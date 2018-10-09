@@ -7,4 +7,14 @@ export default function phonesRouter(app) {
       res.json(phones);
     })
   });
+
+  app.post('/phones', (req, res) => {
+    console.log(req.body);
+    const phone = new Phone(req.body);
+    phone.save((err, phone) => {
+      if (err) return next(err);
+      res.status(201);
+      res.json(phone);
+    });
+  });
 }
