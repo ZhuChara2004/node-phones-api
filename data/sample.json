@@ -1,0 +1,16 @@
+{
+  "phones": [
+    {
+      "title": "Nokia 8",
+      "image": "https://drop.ndtv.com/TECH/product_database/images/8162017114310PM_635_nokia_8_back_silver.jpeg",
+      "description": "HMD Global's flagship Android One cellphone",
+      "price": 400
+    },
+    {
+      "title": "iPhone Xs Max",
+      "image": "https://static.toiimg.com/photo/65786818/Apple-iPhone-XS-Max.jpg",
+      "description": "Apple's top smartphone",
+      "price": 1300
+    }
+  ]
+}
