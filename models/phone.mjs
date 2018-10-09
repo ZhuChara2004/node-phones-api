@@ -6,8 +6,6 @@ const PhoneSchema = new Schema({
   image: String,
   description: String,
   price: { type: Number, default: 0 },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
-});
+}, { timestamps: true });
 
 export default mongoose.model('Phone', PhoneSchema);

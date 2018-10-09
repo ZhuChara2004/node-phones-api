@@ -17,4 +17,28 @@ export default function phonesRouter(app) {
       res.json(phone);
     });
   });
+
+  app.get('/phones/:id', (req, res) => {
+    Phone.findById(req.params.id, (err, doc) => {
+      if (!doc) {
+        res.status(404).json({ status: 'Not found' })
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+  });
+
+  app.put('/phones/:id', (req, res) => {
+    Phone.findById(req.params.id, (err, doc) => {
+      if (!doc) {
+        res.status(404).json({ status: 'Not found' })
+      } else {
+        doc.set(req.body);
+        doc.save((err, updated) => {
+          if (err) return res.status(500).json({ message: err.message });
+          res.status(200).json(updated);
+        });
+      }
+    });
+  });
 }
