@@ -47,6 +47,10 @@ export default function usersRouter(app) {
       if (!doc) {
         res.status(404).json({ status: 'Not found' })
       } else {
+        Order.deleteMany({ userId: doc._id }, (err) => {
+          if (err) return res.status(500).json({ message: err.message });
+        });
+
         doc.remove((err) => {
           if (err) return res.status(500).json({ message: err.message });
           res.status(200).json(doc)
