@@ -13,8 +13,7 @@ export default function usersRouter(app) {
     const user = new User(req.body);
     user.save((err, doc) => {
       if (err) return next(err);
-      res.status(201);
-      res.json(doc);
+      res.status(201).json(doc);
     });
   });
 
@@ -54,4 +53,8 @@ export default function usersRouter(app) {
       }
     });
   });
+
+  app.get('/users/:id/orders', (req, res) => {
+
+  })
 }
