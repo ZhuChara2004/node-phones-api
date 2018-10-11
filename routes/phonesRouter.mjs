@@ -3,7 +3,7 @@ import Phone from '../models/phone';
 export default function phonesRouter(app) {
   app.get('/phones', (req, res) => {
     Phone.find({}).exec((err, phones) => {
-      if (err) return next(err);
+      if (err) return res.status(500).json({ message: err.message });
       res.json(phones);
     })
   });
@@ -12,7 +12,7 @@ export default function phonesRouter(app) {
     console.log(req.body);
     const phone = new Phone(req.body);
     phone.save((err, phone) => {
-      if (err) return next(err);
+      if (err) return res.status(500).json({ message: err.message });
       res.status(201);
       res.json(phone);
     });

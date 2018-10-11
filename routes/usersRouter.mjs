@@ -1,9 +1,10 @@
 import User from '../models/user';
+import Order from '../models/order';
 
 export default function usersRouter(app) {
   app.get('/users', (req, res) => {
     User.find({}).exec((err, docs) => {
-      if (err) return next(err);
+      if (err) return res.status(500).json({ message: err.message });
       res.json(docs);
     })
   });
@@ -12,7 +13,7 @@ export default function usersRouter(app) {
     console.log(req.body);
     const user = new User(req.body);
     user.save((err, doc) => {
-      if (err) return next(err);
+      if (err) return res.status(500).json({ message: err.message });
       res.status(201).json(doc);
     });
   });
@@ -55,6 +56,12 @@ export default function usersRouter(app) {
   });
 
   app.get('/users/:id/orders', (req, res) => {
-
+    Order.find({ userId: req.params.id }, (err, docs) => {
+      if (!docs) {
+        res.status(404).json({ status: 'Not found' })
+      } else {
+        res.status(200).json({docs})
+      }
+    });
   })
 }

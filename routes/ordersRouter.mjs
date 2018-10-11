@@ -4,13 +4,14 @@ import axios from 'axios';
 export default function ordersRouter(app) {
   app.get('/orders', (req, res) => {
     Order.find({}).exec((err, docs) => {
-      if (err) return next(err);
+      if (err) return res.status(500).json({ message: err.message });
       res.json(docs);
     })
   });
 
   app.post('/orders', async (req, res) => {
     const order = new Order(req.body);
+    let sum = 0;
 
     async function fetchPrice(order) {
       const promises = order.cart.map(async el => {
