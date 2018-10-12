@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Test Cellphones API",
   "main": "app.mjs",
+  "repository": "https://github.com/ZhuChara2004/node-phones-api",
   "scripts": {
     "start": "node --experimental-modules app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"

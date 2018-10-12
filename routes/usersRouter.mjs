@@ -61,6 +61,7 @@ export default function usersRouter(app) {
 
   app.get('/users/:id/orders', (req, res) => {
     Order.find({ userId: req.params.id }, (err, docs) => {
+      debugger;
       if (!docs) {
         res.status(404).json({ status: 'Not found' })
       } else {
